@@ -1,0 +1,49 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    enabled: true
+    mode: HTML5
+  datasource:
+    url: jdbc:mysql://192.168.50.251:3306/spikemall?useSSL=false&serverTimezone=UTC
+    username: admin
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 100
+      min-idle: 500
+      max-active: 1000
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      filters: stat
+  redis:
+    host: 192.168.50.251
+    port: 6379
+    timeout: 3
+    password: root
+    jedis:
+      pool:
+        max-idle: 500
+        max-active: 1000
+        max-wait: 500
+
+mybatis:
+  type-aliases-package: com.dh.spike.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 3000
+  mapper-locations: classpath:com.dh.spike.dao.*xml
+
